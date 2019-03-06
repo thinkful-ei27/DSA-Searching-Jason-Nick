@@ -43,16 +43,20 @@ class App extends Component {
     return `${key} is not present in input`
   }
 
-  binarySearch = (arr, key, counter = 1, start=0, end=arr.length-1) => {
-    if (start > end){return `${key} not found in array after ${counter} iterations`}
+  binarySearch = (arr, key, counter = 1, start=0, end=arr.length) => {
+    console.log(`start is ${start}`);
+    console.log(`end is ${end}`);
     let middle = Math.floor((start + end) / 2);
     if(arr[middle] === key){
-      return `${key} is at ${middle} index after ${counter} iterations`
+      return middle;
     } else if (arr[middle] > key){
-      return this.binarySearch(arr, key, counter++, start, middle-1);
+      counter++;
+      return this.binarySearch(arr, key, counter, start, middle-1);
     } else if (arr[middle] < key){
-      return this.binarySearch(arr, key, counter++, middle+1, end);
-    } else return `${key} not found in array after ${counter} iterations`;
+      counter++;
+      return this.binarySearch(arr, key, counter, middle+1, end);
+    }
+    return `${key} is at ${middle} index after ${counter} iterations`
   }
 
   handleClick = (e) => {
