@@ -20,9 +20,12 @@ class App extends Component {
     //Below is the value of the textArea
     console.log(e.currentTarget[0].value);
     let inputValue = e.currentTarget[0].value.split(' ');
+    inputValue.map(number => Number(number));
+    //inputValue = inputValue.sort();
+    console.log(`input value = ${inputValue}`);
     console.log(e.currentTarget[1].value);
     let keyValue = e.currentTarget[1].value;
-    let results = this.linearSearch(inputValue, keyValue)
+    let results = this.binarySearch(inputValue, keyValue)
     this.setState({
       input: inputValue,
       key: keyValue,
@@ -34,18 +37,22 @@ class App extends Component {
     for(let x = 0; x < arr.length; x++){
 
       if(arr[x] === key){
-        return `${key} is at ${x} index after ${x + 1} iterations`
+        return `${key} is at index ${x} after ${x + 1} iterations`
       }
     }
     return `${key} is not present in input`
   }
 
-  binarySearch = (arr, key, counter = 1) => {
-    let middle = Math.floor((arr.length - 1) / 2);
-    
-    if(middle === key){
-      return `${key} is at ${middle} index after ${counter} iteration`
-    }
+  binarySearch = (arr, key, counter = 1, start=0, end=arr.length-1) => {
+    if (start > end){return `${key} not found in array after ${counter} iterations`}
+    let middle = Math.floor(end / 2);
+    if(arr[middle] === key){
+      return `${key} is at ${middle} index after ${counter} iterations`
+    } else if (arr[middle] > key){
+      return this.binarySearch(arr, key, counter++, start, middle-1);
+    } else if (arr[middle] < key){
+      return this.binarySearch(arr, key, counter++, middle+1, end);
+    } else return `${key} not found in array after ${counter} iterations`;
   }
 
   handleClick = (e) => {
