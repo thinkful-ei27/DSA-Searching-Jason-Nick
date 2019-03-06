@@ -45,7 +45,7 @@ class App extends Component {
 
   binarySearch = (arr, key, counter = 1, start=0, end=arr.length-1) => {
     if (start > end){return `${key} not found in array after ${counter} iterations`}
-    let middle = Math.floor(end / 2);
+    let middle = Math.floor((start + end) / 2);
     if(arr[middle] === key){
       return `${key} is at ${middle} index after ${counter} iterations`
     } else if (arr[middle] > key){
