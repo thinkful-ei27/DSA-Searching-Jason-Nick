@@ -22,7 +22,7 @@ class App extends Component {
     let inputValue = e.currentTarget[0].value.split(' ');
     console.log(e.currentTarget[1].value);
     let keyValue = e.currentTarget[1].value;
-    let results = linearSearch(inputValue, keyValue)
+    let results = this.linearSearch(inputValue, keyValue)
     this.setState({
       input: inputValue,
       key: keyValue,
