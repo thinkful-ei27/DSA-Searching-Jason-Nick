@@ -20,7 +20,8 @@ class App extends Component {
     //Below is the value of the textArea
     console.log(e.currentTarget[0].value);
     let tempValue = e.currentTarget[0].value.split(' ');
-    let inputValue =tempValue.map(number => Number(number));
+    let inputValue = tempValue.map(number => Number(number));
+    inputValue.sort();
     console.log('============', inputValue);
     console.log(e.currentTarget[1].value);
     let keyValue = e.currentTarget[1].value;
