@@ -55,7 +55,7 @@ class App extends Component {
     } else if (arr[middle] < key){
       counter++;
       return this.binarySearch(arr, key, counter, middle+1, end);
-    }
+    } else if (start > end){return `${key} not found after ${counter} iterations`}
     return `${key} is at ${middle} index after ${counter} iterations`
   }
 
