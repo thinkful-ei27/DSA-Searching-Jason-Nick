@@ -21,7 +21,7 @@ class App extends Component {
     console.log(e.currentTarget[0].value);
     let tempValue = e.currentTarget[0].value.split(' ');
     let inputValue = tempValue.map(number => Number(number));
-    inputValue.sort();
+    inputValue.sort((a, b) => a - b);
     console.log('============', inputValue);
     console.log(e.currentTarget[1].value);
     let keyValue = e.currentTarget[1].value;
