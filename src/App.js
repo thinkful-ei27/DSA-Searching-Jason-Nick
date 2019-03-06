@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Linear from './components/linear.js';
+//import Linear from './components/linear.js';
 
 class App extends Component {
   constructor(props){
@@ -21,6 +21,10 @@ class App extends Component {
     this.setState({
       input: value
     })
+    
+  }
+
+  linearSearch = (arr, key) => {
     
   }
   handleClick = (e) => {
