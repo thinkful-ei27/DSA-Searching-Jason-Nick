@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Linear from './components/linear.js';
 
 class App extends Component {
   constructor(props){
@@ -48,7 +49,7 @@ class App extends Component {
         <header className="App-header">
           <h1>Searching Tree Traversal Drills</h1>
           <div className="results">
-          {this.returnState()}
+          <Linear props={this.state} />
           </div>
         </header>
         <main role='main'>
