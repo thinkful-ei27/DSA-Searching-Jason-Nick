@@ -24,8 +24,13 @@ class App extends Component {
     inputValue.sort((a, b) => a - b);
     console.log('============', inputValue);
     console.log(e.currentTarget[1].value);
+    let results;
     let keyValue = Number(e.currentTarget[1].value);
-    let results = this.binarySearch(inputValue, keyValue)
+    if (this.state.searchType === 'binary-search'){
+      results = this.binarySearch(inputValue, keyValue)
+    } else {
+      results = this.linearSearch(inputValue, keyValue)
+    }
     this.setState({
       input: inputValue,
       key: keyValue,
@@ -43,7 +48,8 @@ class App extends Component {
     return `${key} is not present in input`
   }
 
-  binarySearch = (arr, key, start = 0, end = arr.length) => {
+  binarySearch = (arr, key, start = 0, end = arr.length, counter=0) => {
+    counter++;
     if(start > end){
       return `G'damn, didn't find it.`;
     }
@@ -51,11 +57,11 @@ class App extends Component {
     const item = arr[index];
     console.log(start, end);
     if(item === key){
-      return index;
+      return `${key} is at index ${index} after ${counter} iterations`;
     } else if(item < key){
-      return this.binarySearch(arr, key, index + 1, end);
+      return this.binarySearch(arr, key, index + 1, end, counter);
     } else if(item > key){
-      return this.binarySearch(arr, key, start, index - 1);
+      return this.binarySearch(arr, key, start, index - 1, counter);
     }
   }
 
