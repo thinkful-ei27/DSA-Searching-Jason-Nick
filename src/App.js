@@ -19,12 +19,14 @@ class App extends Component {
     e.preventDefault();
     //Below is the value of the textArea
     console.log(e.currentTarget[0].value);
-    let inputValue = e.currentTarget[0].value;
+    let inputValue = e.currentTarget[0].value.split(' ');
     console.log(e.currentTarget[1].value);
     let keyValue = e.currentTarget[1].value;
+    let results = linearSearch(inputValue, keyValue)
     this.setState({
       input: inputValue,
-      key: keyValue
+      key: keyValue,
+      results: results
     })
   }
 
@@ -61,7 +63,7 @@ class App extends Component {
         <header className="App-header">
           <h1>Searching Tree Traversal Drills</h1>
           <div className="results">
-        
+             {this.state.results}
           </div>
         </header>
         <main role='main'>
