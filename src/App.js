@@ -19,10 +19,9 @@ class App extends Component {
     e.preventDefault();
     //Below is the value of the textArea
     console.log(e.currentTarget[0].value);
-    let inputValue = e.currentTarget[0].value.split(' ');
-    inputValue.map(number => Number(number));
-    //inputValue = inputValue.sort();
-    console.log(`input value = ${inputValue}`);
+    let tempValue = e.currentTarget[0].value.split(' ');
+    let inputValue =tempValue.map(number => Number(number));
+    console.log('============', inputValue);
     console.log(e.currentTarget[1].value);
     let keyValue = e.currentTarget[1].value;
     let results = this.binarySearch(inputValue, keyValue)
