@@ -24,7 +24,7 @@ class App extends Component {
     inputValue.sort((a, b) => a - b);
     console.log('============', inputValue);
     console.log(e.currentTarget[1].value);
-    let keyValue = e.currentTarget[1].value;
+    let keyValue = Number(e.currentTarget[1].value);
     let results = this.binarySearch(inputValue, keyValue)
     this.setState({
       input: inputValue,
@@ -43,20 +43,20 @@ class App extends Component {
     return `${key} is not present in input`
   }
 
-  binarySearch = (arr, key, counter = 1, start=0, end=arr.length) => {
-    console.log(`start is ${start}`);
-    console.log(`end is ${end}`);
-    let middle = Math.floor((start + end) / 2);
-    if(arr[middle] === key){
-      return middle;
-    } else if (arr[middle] > key){
-      counter++;
-      return this.binarySearch(arr, key, counter, start, middle-1);
-    } else if (arr[middle] < key){
-      counter++;
-      return this.binarySearch(arr, key, counter, middle+1, end);
-    } else if (start > end){return `${key} not found after ${counter} iterations`}
-    return `${key} is at ${middle} index after ${counter} iterations`
+  binarySearch = (arr, key, start = 0, end = arr.length) => {
+    if(start > end){
+      return `G'damn, didn't find it.`;
+    }
+    const index = Math.floor((start + end) / 2);
+    const item = arr[index];
+    console.log(start, end);
+    if(item === key){
+      return index;
+    } else if(item < key){
+      return this.binarySearch(arr, key, index + 1, end);
+    } else if(item > key){
+      return this.binarySearch(arr, key, start, index - 1);
+    }
   }
 
   handleClick = (e) => {
@@ -83,7 +83,7 @@ class App extends Component {
         <header className="App-header">
           <h1>Searching Tree Traversal Drills</h1>
           <div className="results">
-             {this.state.results}
+             <p>{this.state.results}</p>
           </div>
         </header>
         <main role='main'>
