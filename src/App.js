@@ -9,6 +9,7 @@ class App extends Component {
       input: [],
       results: '',
       searchType: '',
+      key: ''
     }
   }
 
@@ -17,16 +18,24 @@ class App extends Component {
     //Thought: Put handleSubmit on form
     e.preventDefault();
     //Below is the value of the textArea
-    let value = e.currentTarget[0].value;
+    let inputValue = e.currentTarget[0].value;
+    console.log(e.currentTarget[1].value);
+    let keyValue = e.currentTarget[1].value;
     this.setState({
-      input: value
+      input: inputValue,
+      key: keyValue
     })
-    
   }
 
   linearSearch = (arr, key) => {
-    
+    for(let x = 0; x < arr.length; x++){
+      if(arr[x] === key){
+        return `Key is at ${x} index`
+      }
+    }
+    return 'Key is not present in input'
   }
+
   handleClick = (e) => {
     console.log(this.props);
     console.log(e.target.value);
@@ -64,6 +73,7 @@ class App extends Component {
               rows='10'
               cols='50'
               ></textarea>
+            <input type='text' className='key'>Key</input>
             <button type="submit"
               onClick={this.handleClick}
               value="linear-search" 
