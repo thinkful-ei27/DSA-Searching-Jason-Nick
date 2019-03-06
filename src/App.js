@@ -18,6 +18,7 @@ class App extends Component {
     //Thought: Put handleSubmit on form
     e.preventDefault();
     //Below is the value of the textArea
+    console.log(e.currentTarget[0].value);
     let inputValue = e.currentTarget[0].value;
     console.log(e.currentTarget[1].value);
     let keyValue = e.currentTarget[1].value;
@@ -37,8 +38,6 @@ class App extends Component {
   }
 
   handleClick = (e) => {
-    console.log(this.props);
-    console.log(e.target.value);
     let value = e.target.value;
     this.setState({
       searchType: value
@@ -62,7 +61,7 @@ class App extends Component {
         <header className="App-header">
           <h1>Searching Tree Traversal Drills</h1>
           <div className="results">
-          <Linear props={this.state} />
+        
           </div>
         </header>
         <main role='main'>
@@ -73,7 +72,7 @@ class App extends Component {
               rows='10'
               cols='50'
               ></textarea>
-            <input type='text' className='key'>Key</input>
+            <input type='text' className='key'></input>
             <button type="submit"
               onClick={this.handleClick}
               value="linear-search" 
