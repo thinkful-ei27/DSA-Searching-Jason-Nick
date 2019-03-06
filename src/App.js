@@ -32,11 +32,20 @@ class App extends Component {
 
   linearSearch = (arr, key) => {
     for(let x = 0; x < arr.length; x++){
+
       if(arr[x] === key){
-        return `Key is at ${x} index`
+        return `${key} is at ${x} index after ${x + 1} iterations`
       }
     }
-    return 'Key is not present in input'
+    return `${key} is not present in input`
+  }
+
+  binarySearch = (arr, key, counter = 1) => {
+    let middle = Math.floor((arr.length - 1) / 2);
+    
+    if(middle === key){
+      return `${key} is at ${middle} index after ${counter} iteration`
+    }
   }
 
   handleClick = (e) => {
